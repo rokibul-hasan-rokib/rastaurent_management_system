@@ -13,6 +13,7 @@ use App\Http\Controllers\BookedController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Admin\DashboardController;
 
 
 /*
@@ -42,3 +43,6 @@ Route::get('/gallery',[GalleryController::class, 'index'])->name('gallery');
 Route::get('/tablebooking',[BookedController::class, 'index'])->name('booked');
 Route::get('/contact',[ContactController::class, 'index'])->name('contact');
 Route::get('/testimonial',[TestimonialController::class, 'index'])->name('testimonial');
+
+
+Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');

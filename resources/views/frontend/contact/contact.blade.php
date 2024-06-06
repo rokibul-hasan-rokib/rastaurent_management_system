@@ -58,8 +58,9 @@ contact
 
         <div class="col-lg-8 mt-5 mt-lg-0">
 
-          <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-            <div class="row">
+          <form action="{{route('contacts.store')}}" method="post" enctype="multipart/form-data">
+            @csrf
+            <div class="row php-email-form">
               <div class="col-md-6 form-group">
                 <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
               </div>
@@ -67,18 +68,18 @@ contact
                 <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
               </div>
             </div>
-            <div class="form-group mt-3">
+            <div class="form-group mt-3 php-email-form">
               <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
             </div>
-            <div class="form-group mt-3">
+            <div class="form-group mt-3 php-email-form">
               <textarea class="form-control" name="message" rows="8" placeholder="Message" required></textarea>
             </div>
-            <div class="my-3">
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your message has been sent. Thank you!</div>
+            @if (session('success'))
+            <div class="alert alert-success mt-3">
+                {{ session('success') }}
             </div>
-            <div class="text-center"><button type="submit">Send Message</button></div>
+           @endif
+            <div class="text-center php-email-form mt-3"><button type="submit">Send Message</button></div>
           </form>
 
         </div>

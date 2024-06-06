@@ -27,7 +27,7 @@
       </li><!-- End F.A.Q Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-contact.html">
+        <a class="nav-link collapsed" href="{{route('contact.index')}}">
           <i class="bi bi-envelope"></i>
           <span>Contact</span>
         </a>

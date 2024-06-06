@@ -45,7 +45,14 @@ Route::get('/chef',[ChefController::class, 'index'])->name('chef');
 Route::get('/gallery',[GalleryController::class, 'index'])->name('gallery');
 Route::get('/tablebooking',[BookedController::class, 'index'])->name('booked');
 Route::post('/tablebooking',[BookedController::class, 'store'])->name('booked.store');
+
+
 Route::get('/contact',[ContactController::class, 'index'])->name('contact');
+Route::get('/contact/all',[ContactController::class, 'index2'])->name('contact.index');
+Route::post('/contact',[ContactController::class, 'store'])->name('contacts.store');
+Route::delete('/contact',[ContactController::class, 'destroy'])->name('contacts.destroy');
+
+
 Route::get('/testimonial',[TestimonialController::class, 'index'])->name('testimonial');
 
 

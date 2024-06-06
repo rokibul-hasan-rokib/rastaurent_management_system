@@ -14,6 +14,8 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\ProductController;
+
 
 
 /*
@@ -46,3 +48,7 @@ Route::get('/testimonial',[TestimonialController::class, 'index'])->name('testim
 
 
 Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
+
+
+
+Route::resource('products', ProductController::class);

@@ -35,6 +35,9 @@ menu
           <div class="menu-ingredients">
             Lorem, deren, trataro, filede, nerada
           </div>
+          <div class="">
+            <button class="m-3">Add To Cart</button>
+          </div>
         </div>
 
         <div class="col-lg-6 menu-item filter-specialty">
@@ -44,6 +47,9 @@ menu
           </div>
           <div class="menu-ingredients">
             Lorem, deren, trataro, filede, nerada
+          </div>
+          <div class="">
+            <button class="m-3">Add To Cart</button>
           </div>
         </div>
 
@@ -55,6 +61,9 @@ menu
           <div class="menu-ingredients">
             A delicate crab cake served on a toasted roll with lettuce and tartar sauce
           </div>
+          <div class="">
+            <button class="m-3">Add To Cart</button>
+          </div>
         </div>
 
         <div class="col-lg-6 menu-item filter-salads">
@@ -64,6 +73,9 @@ menu
           </div>
           <div class="menu-ingredients">
             Lorem, deren, trataro, filede, nerada
+          </div>
+          <div class="">
+            <button class="m-3">Add To Cart</button>
           </div>
         </div>
 
@@ -75,6 +87,9 @@ menu
           <div class="menu-ingredients">
             Grilled chicken with provolone, artichoke hearts, and roasted red pesto
           </div>
+          <div class="">
+            <button class="m-3">Add To Cart</button>
+          </div>
         </div>
 
         <div class="col-lg-6 menu-item filter-starters">
@@ -84,6 +99,9 @@ menu
           </div>
           <div class="menu-ingredients">
             Lorem, deren, trataro, filede, nerada
+          </div>
+          <div class="">
+            <button class="m-3">Add To Cart</button>
           </div>
         </div>
 
@@ -95,6 +113,9 @@ menu
           <div class="menu-ingredients">
             Fresh spinach, crisp romaine, tomatoes, and Greek olives
           </div>
+          <div class="">
+            <button class="m-3">Add To Cart</button>
+          </div>
         </div>
 
         <div class="col-lg-6 menu-item filter-salads">
@@ -105,6 +126,9 @@ menu
           <div class="menu-ingredients">
             Fresh spinach with mushrooms, hard boiled egg, and warm bacon vinaigrette
           </div>
+          <div class="">
+            <button class="m-3">Add To Cart</button>
+          </div>
         </div>
 
         <div class="col-lg-6 menu-item filter-specialty">
@@ -114,6 +138,9 @@ menu
           </div>
           <div class="menu-ingredients">
             Plump lobster meat, mayo and crisp lettuce on a toasted bulky roll
+          </div>
+          <div class="">
+            <button class="m-3">Add To Cart</button>
           </div>
         </div>
 

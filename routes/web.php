@@ -35,7 +35,6 @@ Route::post('/register',[UserController::class, 'register'])->name('register.sto
 Route::get('/login',[UserController::class,'loadLogin'])->name('login.page');
 Route::post('/login',[UserController::class,'userLogin'])->name('login');
 
-
 Route::get('/',[HomeController::class, 'index'])->name('home');
 Route::get('/about',[AboutController::class, 'index'])->name('about');
 Route::get('/menu',[MenuController::class, 'index'])->name('menu');
@@ -45,7 +44,6 @@ Route::get('/chef',[ChefController::class, 'index'])->name('chef');
 Route::get('/gallery',[GalleryController::class, 'index'])->name('gallery');
 Route::get('/tablebooking',[BookedController::class, 'index'])->name('booked');
 Route::post('/tablebooking',[BookedController::class, 'store'])->name('booked.store');
-
 
 Route::get('/contact',[ContactController::class, 'index'])->name('contact');
 Route::get('/contact/all',[ContactController::class, 'index2'])->name('contact.index');

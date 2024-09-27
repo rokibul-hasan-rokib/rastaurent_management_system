@@ -15,6 +15,7 @@ use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 
 
@@ -49,6 +50,13 @@ Route::get('/contact',[ContactController::class, 'index'])->name('contact');
 Route::get('/contact/all',[ContactController::class, 'index2'])->name('contact.index');
 Route::post('/contact',[ContactController::class, 'store'])->name('contacts.store');
 Route::delete('/contact',[ContactController::class, 'destroy'])->name('contacts.destroy');
+
+
+Route::get('/cart', [CartController::class, 'showCart'])->name('cart.index');
+Route::post('/add-to-cart/{id}', [CartController::class, 'addToCart'])->name('cart.add');
+Route::delete('/remove-from-cart/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
+Route::put('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
 
 
 Route::get('/testimonial',[TestimonialController::class, 'index'])->name('testimonial');

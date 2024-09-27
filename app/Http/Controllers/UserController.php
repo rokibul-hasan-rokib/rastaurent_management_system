@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -10,7 +13,7 @@ class UserController extends Controller
         return view('frontend.register.register');
     }
 
-    
+
     public function register(Request $request)
     {
         $request->validate([
@@ -25,7 +28,7 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        
+
         // Redirect to the questions page with user ID
         return redirect()->route('login.page');
     }
@@ -39,7 +42,7 @@ class UserController extends Controller
             'email'=>'required|string|email',
             'password'=>'required',
         ]);
-        
+
         $userCredential = $request->only('email','password');
         if(Auth::attempt($userCredential)){
             return redirect('/dashboard');

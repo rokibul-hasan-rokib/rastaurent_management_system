@@ -37,7 +37,10 @@ menu
                         {{ $item->description }}
                     </div>
                     <div class="">
-                        <button class="m-3">Add To Cart</button>
+                        <form action="{{ route('cart.add', $item->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="m-3 btn btn-primary">Add To Cart</button>
+                        </form>
                     </div>
                 </div>
             @endforeach

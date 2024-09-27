@@ -78,7 +78,7 @@ class CartController extends Controller
         // Clear the cart from the session
         session()->forget('cart');
 
-        return redirect()->route('cart.index')->with('success', 'Order placed successfully!');
+        return redirect()->route('order.confirmation', $order->id);
     }
 
     public function update(Request $request, $id)

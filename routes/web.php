@@ -16,6 +16,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 
 
@@ -47,7 +48,6 @@ Route::get('/tablebooking',[BookedController::class, 'index'])->name('booked');
 Route::post('/tablebooking',[BookedController::class, 'store'])->name('booked.store');
 
 Route::get('/contact',[ContactController::class, 'index'])->name('contact');
-Route::get('/contact/all',[ContactController::class, 'index2'])->name('contact.index');
 Route::post('/contact',[ContactController::class, 'store'])->name('contacts.store');
 Route::delete('/contact',[ContactController::class, 'destroy'])->name('contacts.destroy');
 
@@ -61,14 +61,19 @@ Route::put('/cart/update/{id}', [CartController::class, 'update'])->name('cart.u
 
 Route::get('/testimonial',[TestimonialController::class, 'index'])->name('testimonial');
 
-
-Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
-
+Route::get('/order-confirmation/{id}', [OrderController::class, 'confirmation'])->name('order.confirmation');
 
 
-Route::resource('products', ProductController::class);
+
+Route::middleware(['auth', 'role:admin,super admin'])->group(function () {
+
+    Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('products', ProductController::class);
+    Route::get('/contact/all',[ContactController::class, 'index2'])->name('contact.index');
+    Route::resource('reservations', ReservationController::class);
+    Route::get('reservations/{reservation}/status', [ReservationController::class, 'editStatus'])->name('reservations.editStatus');
+    Route::post('reservations/{reservation}/status', [ReservationController::class, 'updateStatus'])->name('reservations.updateStatus');
+    Route::get('/orders', [OrderController::class, 'orderList'])->name('orders.list');
 
 
-Route::resource('reservations', ReservationController::class);
-Route::get('reservations/{reservation}/status', [ReservationController::class, 'editStatus'])->name('reservations.editStatus');
-Route::post('reservations/{reservation}/status', [ReservationController::class, 'updateStatus'])->name('reservations.updateStatus');
+});

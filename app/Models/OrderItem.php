@@ -20,4 +20,8 @@ class OrderItem extends Model
     {
         return $this->belongsTo(Product::class);
     }
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'menu_item_id'); // Use 'menu_item_id' as the foreign key
+    }
 }

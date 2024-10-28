@@ -52,6 +52,7 @@
             </ul>
           </li> --}}
           <li><a class="nav-link scrollto" href="{{route('contact')}}">Contact</a></li>
+          <li><a class="nav-link scrollto" href="{{route('cart.index')}}">Cart</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

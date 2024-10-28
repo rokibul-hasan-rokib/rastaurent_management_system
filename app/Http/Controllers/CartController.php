@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -120,4 +121,12 @@ class CartController extends Controller
 
         return redirect()->back()->with('success', 'Item removed from cart.');
     }
+
+    public function getCartCount(Request $request)
+{
+    $cart = $request->session()->get('cart', []);
+    $cartCount = array_sum(array_column($cart, 'quantity'));
+
+    return response()->json(['cartCount' => $cartCount]);
+}
 }

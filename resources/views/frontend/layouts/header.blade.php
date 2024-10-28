@@ -52,7 +52,8 @@
             </ul>
           </li> --}}
           <li><a class="nav-link scrollto" href="{{route('contact')}}">Contact</a></li>
-          <li><a class="nav-link scrollto" href="{{route('cart.index')}}">Cart</a></li>
+          <li><a class="nav-link scrollto cart-icon" href="{{route('cart.index')}}"> 🛒 <span id="cart-count">0</span></a>
+            </li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -60,3 +61,30 @@
 
     </div>
   </header><!-- End Header -->
+
+<!-- Include jQuery in your Blade template if it's not already included -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        // Function to fetch the cart count from the backend
+        function updateCartCount() {
+            $.ajax({
+                url: '/cart-count',   // Route we defined earlier
+                method: 'GET',
+                success: function(data) {
+                    // Update the cart count in the navbar
+                    $('#cart-count').text(data.cartCount);
+                },
+                error: function() {
+                    console.error('Could not fetch cart count.');
+                }
+            });
+        }
+
+        // Call the function once on page load to update cart count
+        updateCartCount();
+
+        // Optional: Call this function again after adding items to the cart
+    });
+</script>

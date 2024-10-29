@@ -37,28 +37,28 @@
 
                             <form action="{{ route('roles.update', $role->id) }}" method="POST">
                                 @csrf
+                                @method('PUT')
                                 <div class="form-group">
                                     <label for="name">Name</label>
-                                    <input type="text" name="name" id="name" class="form-control"
-                                        value={{ $role['name'] }} required>
+                                    <input type="text" name="name" id="name" class="form-control" value="{{ $role['name'] }}" required>
                                 </div>
+
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" name="email" id="email" class="form-control"
-                                        value={{ $role['email'] }} required>
+                                    <input type="email" name="email" id="email" class="form-control" value="{{ $role['email'] }}" required>
                                 </div>
-                    
+
                                 <div class="form-group">
                                     <label for="role">Role</label>
-                                    <select name="role" type="role" id="role" class="form-control"
-                                        value={{ $role['role'] }} required>
-                                        <option value="">{{ $role['role'] }}</option>
-                                        <option value="admin" {{ $role->role == 'admin' ? 'admin' : 'user' }}>admin</option>
-                                        <option value="super admin" {{ $role->role == 'super admin' ? 'super admin' : 'user' }}>super admin</option>
+                                    <select name="role" id="role" class="form-control" required>
+                                        <option value="" disabled selected>{{ $role['role'] }}</option>
+                                        <option value="user" {{ $role->role == 'user' ? 'selected' : '' }}>User</option>
+                                        <option value="admin" {{ $role->role == 'admin' ? 'selected' : '' }}>Admin</option>
+                                        <option value="super admin" {{ $role->role == 'super admin' ? 'selected' : '' }}>Super Admin</option>
                                     </select>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary">Register</button>
+                                <button type="submit" class="btn btn-primary">Update</button>
                             </form>
                         </div>
                     </div>

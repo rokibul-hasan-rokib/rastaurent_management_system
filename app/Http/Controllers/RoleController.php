@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -52,13 +53,14 @@ class RoleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $role)
+    public function update(UpdateUserRequest $request, User $role)
     {
+
        try {
         DB::beginTransaction();
         (new User())->updateUser($request,$role);
         DB::commit();
-        return redirect()->route('');
+        return redirect()->route('roles.index');
        } catch (\Throwable $th) {
         DB::rollBack();
        }

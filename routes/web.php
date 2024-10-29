@@ -18,8 +18,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
-
-
+use App\Http\Controllers\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,6 +75,8 @@ Route::middleware(['auth', 'role:admin,super admin'])->group(function () {
     Route::get('reservations/{reservation}/status', [ReservationController::class, 'editStatus'])->name('reservations.editStatus');
     Route::post('reservations/{reservation}/status', [ReservationController::class, 'updateStatus'])->name('reservations.updateStatus');
     Route::get('/orders', [OrderController::class, 'orderList'])->name('orders.list');
+
+    Route::resource('roles', RoleController::class);
 
 
 });

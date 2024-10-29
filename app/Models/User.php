@@ -5,8 +5,10 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\LaravelIgnition\Http\Requests\UpdateConfigRequest;
 
 class User extends Authenticatable
 {
@@ -49,4 +51,35 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+
+     protected $guraded = [] ;
+
+     final public function getAllUsers()
+     {
+        return self::query()->get();
+     }
+
+     final public function updateUser(Request $request, User $role){
+           return $role->update($this->prepareDataForUpdate($request));
+     }
+
+     final public function prepareDataForUpdate(Request $request){
+        return [
+            "name"=>$request->input('name'),
+            "email"=>$request->input('email'),
+            "role"=>$request->input('role'),
+        ];
+     }
+
+     public function delete_role(User $role)
+     {
+        return $role->delete();
+     }
+
+     public function userAssoc(){
+        return self::query()->pluck('name','id');
+     }
+
 }

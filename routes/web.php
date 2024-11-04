@@ -31,10 +31,12 @@ use App\Http\Controllers\RoleController;
 |
 */
 
-Route::get('/register',[UserController::class, 'loadRegister']);
+Route::get('/register',[UserController::class, 'loadRegister'])->name('register.page');
 Route::post('/register',[UserController::class, 'register'])->name('register.store');
 Route::get('/login',[UserController::class,'loadLogin'])->name('login.page');
 Route::post('/login',[UserController::class,'userLogin'])->name('login');
+Route::post('/logout',[UserController::class,'logout'])->name('logout');
+
 
 Route::get('/',[HomeController::class, 'index'])->name('home');
 Route::get('/about',[AboutController::class, 'index'])->name('about');

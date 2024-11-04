@@ -32,23 +32,23 @@
                     <form action="{{ route('register.store') }}" method="POST">
                         @csrf
                         <div class="form-group">
-                            <label for="name">Name</label>
+                            <label for="name" class="text-dark font-weight-bold">Name</label>
                             <input type="text" name="name" id="name" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email</label>
+                            <label for="email" class="text-dark font-weight-bold">Email</label>
                             <input type="email" name="email" id="email" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="password">Password</label>
+                            <label for="password" class="text-dark font-weight-bold">Password</label>
                             <input type="password" name="password" id="password" class="form-control" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="password">Password Confirmation</label>
+                            <label for="password" class="text-dark font-weight-bold">Password Confirmation</label>
                             <input type="password" type="password" name="password_confirmation"
                                 id="password_confirmation" class="form-control" required>
                         </div>
-                       
+
                         <button type="submit" class="btn btn-primary">Register</button>
                     </form>
                 </div>

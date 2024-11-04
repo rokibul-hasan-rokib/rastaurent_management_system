@@ -10,7 +10,7 @@ class OrderController extends Controller
     public function orderList()
 {
     $orders = Order::where('user_id', auth()->user()->id)->get();
-    return view('orders.index', compact('orders'));
+    return view('backend.order.index', compact('orders'));
 }
 public function confirmation($id)
 {

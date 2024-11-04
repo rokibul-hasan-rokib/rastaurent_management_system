@@ -45,7 +45,16 @@
                                             <td>{{ $order->user->name }}</td>
                                             <td>{{ $order->total_amount }}</td>
                                             <td>{{ $order->status }}</td>
-
+                                            <td>
+                                                <a href="{{ route('orders.edit', $order->id) }}"
+                                                    class="btn btn-info btn-sm">View</a>
+                                                <form action="{{ route('orders.destroy', $order->id) }}" method="POST"
+                                                    style="display:inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                                </form>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

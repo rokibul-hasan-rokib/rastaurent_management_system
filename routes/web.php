@@ -78,6 +78,10 @@ Route::middleware(['auth', 'role:admin,super admin'])->group(function () {
     Route::post('reservations/{reservation}/status', [ReservationController::class, 'updateStatus'])->name('reservations.updateStatus');
     Route::get('/orderlist', [OrderController::class, 'orderList'])->name('orders.list');
     Route::get('/orders', [OrderController::class, 'order'])->name('orders');
+    Route::get('/orders/update/status/{id}', [OrderController::class, 'edit'])->name('orders.edit');
+    Route::delete('/orders/delete/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
+    Route::put('/orders/{id}/status', [OrderController::class, 'changeStatus'])->name('orders.updateStatus');
+
 
     Route::resource('roles', RoleController::class);
 

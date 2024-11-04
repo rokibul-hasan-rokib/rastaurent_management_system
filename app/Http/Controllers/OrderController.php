@@ -56,4 +56,9 @@ public function changeStatus(Request $request, $id)
         return redirect()->route('orders')->with('error', 'Error updating order status: ' . $e->getMessage());
     }
 }
+    final public function edit($id)
+    {
+        $order = Order::findOrFail($id);
+        return view('backend.order.edit', compact('order'));
+    }
 }

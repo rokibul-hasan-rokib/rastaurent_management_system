@@ -54,32 +54,38 @@ class User extends Authenticatable
 
 
 
-     protected $guraded = [] ;
+    protected $guraded = [];
 
-     final public function getAllUsers()
-     {
+    final public function getAllUsers()
+    {
         return self::query()->get();
-     }
+    }
 
-     final public function updateUser(Request $request, User $role){
-           return $role->update($this->prepareDataForUpdate($request));
-     }
+    final public function updateUser(Request $request, User $role)
+    {
+        return $role->update($this->prepareDataForUpdate($request));
+    }
 
-     final public function prepareDataForUpdate(Request $request){
+    final public function prepareDataForUpdate(Request $request)
+    {
         return [
-            "name"=>$request->input('name'),
-            "email"=>$request->input('email'),
-            "role"=>$request->input('role'),
+            "name" => $request->input('name'),
+            "email" => $request->input('email'),
+            "role" => $request->input('role'),
         ];
-     }
+    }
 
-     public function delete_role(User $role)
-     {
+    public function delete_role(User $role)
+    {
         return $role->delete();
-     }
+    }
 
-     public function userAssoc(){
-        return self::query()->pluck('name','id');
-     }
-
+    public function userAssoc()
+    {
+        return self::query()->pluck('name', 'id');
+    }
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

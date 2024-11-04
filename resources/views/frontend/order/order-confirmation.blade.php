@@ -16,19 +16,19 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                            <th>Total</th>
+                            <th class="text-white font-weight-bold">Name</th>
+                            <th class="text-white font-weight-bold">Quantity</th>
+                            <th class="text-white font-weight-bold">Price</th>
+                            <th class="text-white font-weight-bold">Total</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($order->orderItems as $item)
                             <tr>
-                                <td>{{ $item->product ? $item->product->name : 'Product not found' }}</td>
-                                <td>{{ $item->quantity }}</td>
-                                <td>${{ number_format($item->price, 2) }}</td>
-                                <td>${{ number_format($item->price * $item->quantity, 2) }}</td>
+                                <td class="text-white font-weight-bold">{{ $item->product ? $item->product->name : 'Product not found' }}</td>
+                                <td class="text-white font-weight-bold">{{ $item->quantity }}</td>
+                                <td class="text-white font-weight-bold">${{ number_format($item->price, 2) }}</td>
+                                <td class="text-white font-weight-bold">${{ number_format($item->price * $item->quantity, 2) }}</td>
                             </tr>
                         @endforeach
                     </tbody>

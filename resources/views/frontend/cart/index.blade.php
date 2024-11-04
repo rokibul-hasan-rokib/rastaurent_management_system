@@ -17,22 +17,22 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Image</th>
-                            <th>Name</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                            <th>Total</th>
-                            <th>Action</th>
+                            <th class="text-white font-weight-bold">Image</th>
+                            <th class="text-white font-weight-bold">Name</th>
+                            <th class="text-white font-weight-bold">Quantity</th>
+                            <th  class="text-white font-weight-bold">Price</th>
+                            <th  class="text-white font-weight-bold">Total</th>
+                            <th  class="text-white font-weight-bold">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($cart as $id => $item)
                             <tr>
                                 <td><img src="{{ asset('storage/' . $item['image']) }}" width="50" alt="{{ $item['name'] }}"></td>
-                                <td>{{ $item['name'] }}</td>
-                                <td>{{ $item['quantity'] }}</td>
-                                <td>${{ number_format($item['price'], 2) }}</td>
-                                <td>${{ number_format($item['price'] * $item['quantity'], 2) }}</td>
+                                <td class="text-white font-weight-bold">{{ $item['name'] }}</td>
+                                <td class="text-white font-weight-bold">{{ $item['quantity'] }}</td>
+                                <td class="text-white font-weight-bold">${{ number_format($item['price'], 2) }}</td>
+                                <td class="text-white font-weight-bold">${{ number_format($item['price'] * $item['quantity'], 2) }}</td>
                                 <td>
                                     <form action="{{ route('cart.remove', $id) }}" method="POST">
                                         @csrf

@@ -15,19 +15,19 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Order ID</th>
-                                <th>Total</th>
-                                <th>Date</th>
-                                <th>Action</th>
+                                <th class="text-white font-weight-bold">Order ID</th>
+                                <th class="text-white font-weight-bold">Total</th>
+                                <th class="text-white font-weight-bold">Date</th>
+                                <th class="text-white font-weight-bold">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($orders as $order)
                                 <tr>
-                                    <td>{{ $order->id }}</td>
-                                    <td>${{ number_format($order->total, 2) }}</td>
-                                    <td>{{ $order->created_at->format('d M Y') }}</td>
-                                    <td><a href="{{ route('order.confirmation', $order->id) }}" class="btn btn-info">View</a></td>
+                                    <td class="text-white font-weight-bold">{{ $order->id }}</td>
+                                    <td class="text-white font-weight-bold">${{ number_format($order->total, 2) }}</td>
+                                    <td class="text-white font-weight-bold">{{ $order->created_at->format('d M Y') }}</td>
+                                    <td class="text-white font-weight-bold"><a href="{{ route('order.confirmation', $order->id) }}" class="btn btn-info">View</a></td>
                                 </tr>
                             @endforeach
                         </tbody>

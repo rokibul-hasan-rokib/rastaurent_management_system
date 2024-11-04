@@ -32,39 +32,35 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
+                                        <th>Order Id</th>
+                                        <th>Menu Id</th>
+                                        <th>Quantity</th>
                                         <th>Price</th>
-                                        <th>Description</th>
-                                        <th>Image</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @foreach ($products as $product)
+                                    @foreach ($orders as $order)
                                         <tr>
-                                            <td>{{ $product->id }}</td>
-                                            <td>{{ $product->name }}</td>
-                                            <td>{{ $product->price }}</td>
-                                            <td>{{ $product->description }}</td>
+                                            <td>{{ $order->id }}</td>
+                                            <td>{{ $order->order->user->name }}</td>
+                                            <td>{{ $order->order_id }}</td>
+                                            {{-- <td>{{ $order->orderItems->order_id }}</td> --}}
+                                            <td>{{ $order->product->name }}</td>
+                                            <td>{{ $order->quantity }}</td>
+                                            <td>{{ $order->price }}</td>
                                             <td>
-                                                @if ($product->image)
-                                                    <img src="{{ asset('storage/' . $product->image) }}" width="50"
-                                                        height="50">
-                                                @endif
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('products.show', $product->id) }}"
+                                                {{-- <a href="{{ route('orders.show', $order->id) }}"
                                                     class="btn btn-info btn-sm">View</a>
-                                                <a href="{{ route('products.edit', $product->id) }}"
-                                                    class="btn btn-warning btn-sm">Edit</a>
-                                                <form action="{{ route('products.destroy', $product->id) }}" method="POST"
+                                                <form action="{{ route('orders.destroy', $order->id) }}" method="POST"
                                                     style="display:inline;">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                                </form>
+                                                </form> --}}
                                             </td>
                                         </tr>
-                                    @endforeach --}}
+                                    @endforeach
                                 </tbody>
                             </table>
                             <!-- End Table with stripped rows -->

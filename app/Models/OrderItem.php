@@ -4,12 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class OrderItem extends Model
 {
     use HasFactory;
 
     protected $fillable = ['order_id', 'menu_item_id', 'quantity', 'price'];
+
+    final public function getAllOrder(): LengthAwarePaginator
+    {
+        return self::query()
+        ->with([
+            'order:id,user_id',
+            'order.user:id,name', 
+            'product:id,name'
+        ])
+        ->orderBy('id', 'desc')
+        ->paginate(15);
+     }
+
 
     public function order()
     {

@@ -46,9 +46,11 @@ class UserController extends Controller
         $userCredential = $request->only('email','password');
         if(Auth::attempt($userCredential)){
             return redirect('/dashboard');
-        }else{
-            return back()->with('error','Email and Password is incorrect');
         }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
     }
     public function logout(Request $request){
         $request->session()->flush();

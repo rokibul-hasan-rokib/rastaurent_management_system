@@ -33,25 +33,25 @@
                                     @csrf
                                     <div class="form-group">
                                         <label for="email" class="text-dark font-weight-bold">Email</label>
+                                        <x-required />
                                         <input type="email" name="email" id="email" class="form-control" required>
-                                        @error('email')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+                                        <x-validation-error :error="$errors->first('email')" />
                                     </div>
 
                                     <div class="form-group mb-2">
                                         <label for="password" class="text-dark font-weight-bold">Password</label>
+                                        <x-required />
                                         <input type="password" name="password" id="password" class="form-control" required>
-                                        @error('password')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+                                        <x-validation-error :error="$errors->first('password')" />
                                     </div>
 
                                     <button type="submit" class="btn btn-primary">Login</button>
                                 </form>
+
                                 <p class="mt-3">
                                     Don't have an account?
-                                    <a href="{{ route('register.page') }}" class="text-primary font-weight-bold">Click here to
+                                    <a href="{{ route('register.page') }}" class="text-primary font-weight-bold">Click here
+                                        to
                                         register</a>
                                 </p>
                             </div>

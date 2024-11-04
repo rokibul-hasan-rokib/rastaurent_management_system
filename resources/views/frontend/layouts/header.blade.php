@@ -72,20 +72,17 @@
          <a href="{{ route('booked') }}" class="book-a-table-btn scrollto d-none d-lg-flex">Book a table</a>
 
      </div>
- </header><!-- End Header -->
+ </header>
 
- <!-- Include jQuery in your Blade template if it's not already included -->
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
  <script type="text/javascript">
      $(document).ready(function() {
-         // Function to fetch the cart count from the backend
          function updateCartCount() {
              $.ajax({
-                 url: '/cart-count', // Route we defined earlier
+                 url: '/cart-count',
                  method: 'GET',
                  success: function(data) {
-                     // Update the cart count in the navbar
                      $('#cart-count').text(data.cartCount);
                  },
                  error: function() {
@@ -94,9 +91,6 @@
              });
          }
 
-         // Call the function once on page load to update cart count
          updateCartCount();
-
-         // Optional: Call this function again after adding items to the cart
      });
  </script>

@@ -39,7 +39,6 @@
 
                             <form action="{{ route('orders.updateStatus', $order->id) }}" method="POST">
                                 @csrf
-                                @method('PUT')
 
                                 <select class="btn btn-info mb-1" name="status">
                                     <option value="pending" {{ $order->status == 'pending' ? 'selected' : '' }}>Pending</option>

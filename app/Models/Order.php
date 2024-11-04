@@ -41,21 +41,6 @@ class Order extends Model
               return $order->delete();
      }
 
-     public function updateStatus($newStatus)
-     {
-         if (in_array($newStatus, ['pending', 'confirmed', 'rejected'])) {
-             $this->status = $newStatus;
-             $this->save();
-
-             if ($newStatus === 'confirmed' || $newStatus === 'rejected') {
-                 Mail::to($this->user->email)->send(new OrderStatusChanged($this));
-             }
-
-             return true;
-         }
-
-         return false;
-     }
 
 
     public function items()

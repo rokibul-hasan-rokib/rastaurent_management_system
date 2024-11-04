@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderStatusChanged;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Throwable;
 
 class OrderController extends Controller
@@ -43,18 +45,27 @@ public function destroy($id): RedirectResponse
     return redirect()->route('orders');
 }
 
+
 public function changeStatus(Request $request, $id)
 {
+    $order = Order::find($id);
+
+    if (!$order) {
+        return redirect()->route('index')->with('error', 'Order not found.');
+    }
+
     $request->validate([
-        'status' => 'required|string|in:' . implode(',', array_keys(Order::STATUS_LIST)),
+        'status' => 'required|in:pending,confirmed,rejected',
     ]);
 
-    try {
-        (new Order())->updateStatus($id);
-        return redirect()->route('orders')->with('success', 'Order status updated successfully.');
-    } catch (\Exception $e) {
-        return redirect()->route('orders')->with('error', 'Error updating order status: ' . $e->getMessage());
+    $order->status = $request->status;
+    $order->save();
+
+    if (in_array($order->status, ['confirmed', 'rejected'])) {
+        Mail::to($order->user->email)->send(new OrderStatusChanged($order));
     }
+
+    return redirect()->route('orders')->with('success', 'Order status updated successfully.');
 }
     final public function edit($id)
     {

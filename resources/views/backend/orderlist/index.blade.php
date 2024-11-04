@@ -1,4 +1,3 @@
-
 @extends('backend.layouts.master')
 @section('title')
     order
@@ -25,7 +24,7 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Order list</h5>
+                            <h5 class="card-title">Order</h5>
 
                             <!-- Table with stripped rows -->
                             <table class="table datatable">
@@ -33,19 +32,33 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Total Amount</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                        <th>Order Id</th>
+                                        <th>Menu Id</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($orders as $order)
                                         <tr>
                                             <td>{{ $order->id }}</td>
-                                            <td>{{ $order->user->name }}</td>
-                                            <td>{{ $order->total_amount }}</td>
-                                            <td>{{ $order->status }}</td>
-
+                                            <td>{{ $order->order->user->name }}</td>
+                                            <td>{{ $order->order_id }}</td>
+                                            {{-- <td>{{ $order->orderItems->order_id }}</td> --}}
+                                            <td>{{ $order->product->name }}</td>
+                                            <td>{{ $order->quantity }}</td>
+                                            <td>{{ $order->price }}</td>
+                                            <td>
+                                                {{-- <a href="{{ route('orders.show', $order->id) }}"
+                                                    class="btn btn-info btn-sm">View</a>
+                                                <form action="{{ route('orders.destroy', $order->id) }}" method="POST"
+                                                    style="display:inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                                </form> --}}
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

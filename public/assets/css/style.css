@@ -1726,10 +1726,4 @@ section {
   text-align: center;
   font-size: 13px;
   color: #fff;
-
-.validation-error {
-    position: absolute;
-    font-size: 13px;
-    color: red;
-}
 }

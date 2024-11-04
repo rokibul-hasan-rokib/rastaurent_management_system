@@ -34,9 +34,16 @@
       </li><!-- End Contact Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{route('orders.list')}}">
+        <a class="nav-link collapsed" href="{{route('orders')}}">
           <i class="bi bi-card-list"></i>
           <span>Order</span>
+        </a>
+      </li><!-- End Register Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{route('orders.list')}}">
+          <i class="bi bi-card-list"></i>
+          <span>Order List</span>
         </a>
       </li><!-- End Register Page Nav -->
 

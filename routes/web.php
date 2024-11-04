@@ -76,7 +76,8 @@ Route::middleware(['auth', 'role:admin,super admin'])->group(function () {
     Route::resource('reservations', ReservationController::class);
     Route::get('reservations/{reservation}/status', [ReservationController::class, 'editStatus'])->name('reservations.editStatus');
     Route::post('reservations/{reservation}/status', [ReservationController::class, 'updateStatus'])->name('reservations.updateStatus');
-    Route::get('/orders', [OrderController::class, 'orderList'])->name('orders.list');
+    Route::get('/orderlist', [OrderController::class, 'orderList'])->name('orders.list');
+    Route::get('/orders', [OrderController::class, 'order'])->name('orders');
 
     Route::resource('roles', RoleController::class);
 

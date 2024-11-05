@@ -79,7 +79,8 @@ Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 
 Route::get('/testimonial',[TestimonialController::class, 'index'])->name('testimonial');
 
-Route::get('/order-confirmation/{id}', [OrderController::class, 'confirmation'])->name('order.confirmation');
+Route::get('/order-confirmation/{id}', [OrderController::class, 'confirmationById'])->name('order.confirmationbyid');
+Route::get('/order-confirmation', [OrderController::class, 'confirmation'])->name('order.confirmation');
 
 
 

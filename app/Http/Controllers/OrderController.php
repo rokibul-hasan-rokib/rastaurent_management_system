@@ -23,13 +23,21 @@ class OrderController extends Controller
     $orders = (new Order())->getAllOrder();
     return view('backend.order.index', compact('orders'));
 }
-public function confirmation($id)
+public function confirmationbyId($id)
 {
     $order = Order::with('orderItems.product')->findOrFail($id);
     $total = $order->orderItems->sum(function ($item) {
         return $item->price * $item->quantity;
     });
     return view('frontend.order.order-confirmation', compact('order','total'));
+}
+public function confirmation()
+{
+    $orders = Order::with('orderItems.product')
+        ->where('user_id', auth()->id())
+        ->get();
+
+    return view('frontend.order.index', compact('orders'));
 }
 
 public function destroy($id): RedirectResponse

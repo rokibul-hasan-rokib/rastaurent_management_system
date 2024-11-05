@@ -10,35 +10,67 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+    // public function addToCart(Request $request, $id)
+    // {
+    //     $menuItem = Product::find($id);
+
+    //     if (!$menuItem) {
+    //         return redirect()->back()->with('error', 'Item not found.');
+    //     }
+
+    //     $cart = session()->get('cart', []);
+
+    //     if (isset($cart[$id])) {
+    //         $cart[$id]['quantity']++;
+    //     } else {
+    //         // Add new item to the cart
+    //         $cart[$id] = [
+    //             "name" => $menuItem->name,
+    //             "quantity" => 1,
+    //             "price" => $menuItem->price,
+    //             "image" => $menuItem->image
+    //         ];
+    //     }
+
+    //     session()->put('cart', $cart);
+
+    //     return redirect()->back()->with('success', 'Item added to cart.');
+    // }
+
     public function addToCart(Request $request, $id)
-    {
-        $menuItem = Product::find($id);
+{
+    $menuItem = Product::find($id);
 
-        if (!$menuItem) {
-            return redirect()->back()->with('error', 'Item not found.');
-        }
-
-        $cart = session()->get('cart', []);
-
-        // If item already exists in cart, increment the quantity
-        if (isset($cart[$id])) {
-            $cart[$id]['quantity']++;
-        } else {
-            // Add new item to the cart
-            $cart[$id] = [
-                "name" => $menuItem->name,
-                "quantity" => 1,
-                "price" => $menuItem->price,
-                "image" => $menuItem->image
-            ];
-        }
-
-        session()->put('cart', $cart);
-
-        return redirect()->back()->with('success', 'Item added to cart.');
+    if (!$menuItem) {
+        return redirect()->back()->with('error', 'Item not found.');
     }
 
-    // Show the cart
+    $cart = session()->get('cart', []);
+
+    if (isset($cart[$id])) {
+        $cart[$id]['quantity']++;
+    } else {
+        $cart[$id] = [
+            "name" => $menuItem->name,
+            "quantity" => 1,
+            "price" => $menuItem->price,
+            "image" => $menuItem->image
+        ];
+    }
+
+    session()->put('cart', $cart);
+
+    $totalAmount = 0;
+    foreach ($cart as $item) {
+        $totalAmount += $item['price'] * $item['quantity'];
+    }
+
+    session()->put('totalAmount', $totalAmount);
+
+    return redirect()->back()->with('success', 'Item added to cart.');
+}
+
+
     public function showCart()
     {
         $cart = session()->get('cart', []);

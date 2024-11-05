@@ -44,6 +44,14 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="text-end">
+                    @if(session()->has('totalAmount'))
+                        <p>Total Amount: {{ session('totalAmount') }} Taka</p>
+                    @else
+                        <p>Total Amount: 0 Taka</p>
+                    @endif
+                </div>
+
 
                 <form action="{{ route('checkout') }}" method="POST">
                     @csrf

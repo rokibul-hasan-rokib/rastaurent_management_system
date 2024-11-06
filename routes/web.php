@@ -58,7 +58,7 @@ Route::get('/cart', [CartController::class, 'showCart'])->name('cart.index');
 Route::post('/add-to-cart/{id}', [CartController::class, 'addToCart'])->name('cart.add');
 Route::delete('/remove-from-cart/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
 Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
-Route::put('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
+Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
 Route::get('/cart-count', [CartController::class, 'getCartCount']);
 
 // SSLCOMMERZ Start

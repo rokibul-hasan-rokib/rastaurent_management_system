@@ -12,13 +12,12 @@
                 <h2>Your Cart</h2>
 
                 @if (count($cart) > 0)
-                    <table class="table">
+                    <table class="table table-responsive">
                         <thead>
                             <tr>
                                 <th class="text-white font-weight-bold">Image</th>
                                 <th class="text-white font-weight-bold">Name</th>
                                 <th class="text-white font-weight-bold">Quantity</th>
-                                <th class="text-white font-weight-bold">Price</th>
                                 <th class="text-white font-weight-bold">Total</th>
                                 <th class="text-white font-weight-bold">Action</th>
                             </tr>
@@ -26,10 +25,12 @@
                         <tbody>
                             @foreach ($cart as $id => $item)
                                 <tr>
-                                    <td><img src="{{ asset('storage/' . $item['image']) }}" width="50" alt="{{ $item['name'] }}"></td>
+                                    <td>
+                                        <img src="{{ asset('storage/' . $item['image']) }}" class="img-fluid" style="max-width: 50px;" alt="{{ $item['name'] }}">
+                                    </td>
                                     <td class="text-white font-weight-bold">{{ $item['name'] }}</td>
                                     <td class="text-white font-weight-bold">
-                                        <input type="number" class="quantity-input" data-item-id="{{ $id }}" value="{{ $item['quantity'] }}" min="1" style="width: 60px;">
+                                        <input type="number" class="quantity-input form-control" data-item-id="{{ $id }}" value="{{ $item['quantity'] }}" min="1" style="width: 100px;">
                                     </td>
                                     <td class="text-white font-weight-bold total-price total-price-{{ $id }}">
                                         ${{ number_format($item['price'] * $item['quantity'], 2) }}
@@ -38,20 +39,21 @@
                                         <form action="{{ route('cart.remove', $id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Remove</button>
+                                            <button type="submit" class="btn btn-danger btn-sm">Remove</button>
                                         </form>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
+
                     <div class="text-end">
                         <p>Total Amount: <span class="total-amount">{{ session('totalAmount', 0) }} Taka</span></p>
                     </div>
 
                     <form action="{{ route('checkout') }}" method="POST">
                         @csrf
-                        <button type="submit" class="btn btn-primary">Checkout All</button>
+                        <button type="submit" class="btn btn-primary btn-lg">Checkout All</button>
                     </form>
                 @else
                     <p>Your cart is empty.</p>
@@ -98,8 +100,6 @@
                 });
             });
         });
-
-
     </script>
 
 @endsection

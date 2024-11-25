@@ -75,6 +75,7 @@ public function changeStatus(Request $request, $id)
 
     return redirect()->route('orders')->with('success', 'Order status updated successfully.');
 }
+
     final public function edit($id)
     {
         $order = Order::findOrFail($id);

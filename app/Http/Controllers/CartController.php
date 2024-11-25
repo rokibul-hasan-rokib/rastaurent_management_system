@@ -91,28 +91,39 @@ class CartController extends Controller
     {
         $cart = session()->get('cart');
 
-        // Check if the item exists in the cart
         if (isset($cart[$id])) {
-            // Update the quantity from the input field
             $quantity = $request->quantity;
 
-            // Ensure the quantity is at least 1
             if ($quantity < 1) {
                 $quantity = 1;
             }
 
-            // Update the quantity in the cart
             $cart[$id]['quantity'] = $quantity;
-
-            // Update the cart in session
             session()->put('cart', $cart);
 
-            // Success message
-            return redirect()->back()->with('success', 'Cart updated successfully!');
+            // Calculate updated item price
+            $updatedPrice = $cart[$id]['price'] * $cart[$id]['quantity'];
+
+            // Calculate total amount for the cart
+            $totalAmount = 0;
+            foreach ($cart as $item) {
+                $totalAmount += $item['price'] * $item['quantity'];
+            }
+
+            // Return JSON response for AJAX
+            return response()->json([
+                'success' => true,
+                'updatedPrice' => $updatedPrice,
+                'totalQuantity' => $cart[$id]['quantity'],
+                'totalAmount' => $totalAmount, // Include total cart amount
+                'message' => 'Cart updated successfully!'
+            ]);
         }
 
         return redirect()->back()->with('error', 'Item not found in the cart!');
     }
+
+
 
     // Remove an item from the cart
     public function removeFromCart($id)

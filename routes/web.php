@@ -46,8 +46,7 @@ Route::get('/specialmenu',[SpecialMenuController::class, 'index'])->name('specia
 Route::get('/event',[EventController::class, 'index'])->name('event');
 Route::get('/chef',[ChefController::class, 'index'])->name('chef');
 Route::get('/gallery',[GalleryController::class, 'index'])->name('gallery');
-Route::get('/tablebooking',[BookedController::class, 'index'])->name('booked');
-Route::post('/tablebooking',[BookedController::class, 'store'])->name('booked.store');
+
 
 Route::get('/contact',[ContactController::class, 'index'])->name('contact');
 Route::post('/contact',[ContactController::class, 'store'])->name('contacts.store');
@@ -74,6 +73,14 @@ Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
 
 Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 //SSLCOMMERZ END
+
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/tablebooking',[BookedController::class, 'index'])->name('booked');
+    Route::post('/tablebooking',[BookedController::class, 'store'])->name('booked.store');
+
+
+});
 
 
 

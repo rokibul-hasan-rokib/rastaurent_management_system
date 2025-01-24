@@ -43,11 +43,11 @@
                                     @foreach ($orders as $order)
                                         <tr>
                                             <td>{{ $order->id }}</td>
-                                            <td>{{ $order->order->user->name }}</td>
-                                            <td>{{ $order->order_id }}</td>
+                                            <td>{{ $order?->order?->user?->name }}</td>
+                                            <td>{{ $order?->order_id }}</td>
                                             {{-- <td>{{ $order->orderItems->order_id }}</td> --}}
-                                            <td>{{ $order->product->name }}</td>
-                                            <td>{{ $order->quantity }}</td>
+                                            <td>{{ $order?->product?->name }}</td>
+                                            <td>{{ $order?->quantity }}</td>
                                             <td>{{ $order->price }}</td>
                                             <td>
                                                 {{-- <a href="{{ route('orders.show', $order->id) }}"

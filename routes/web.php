@@ -16,6 +16,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
@@ -83,7 +84,7 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-Route::get('/testimonial', [TestimonialController::class, 'index'])->name('testimonial');
+Route::get('/testimonials', [FrontEndController::class, 'testimonial'])->name('testimonials');
 
 Route::get('/order-confirmation/{id}', [OrderController::class, 'confirmationById'])->name('order.confirmationbyid');
 Route::get('/order-confirmation', [OrderController::class, 'confirmation'])->name('order.confirmation');
@@ -104,6 +105,8 @@ Route::middleware(['auth', 'role:admin,super admin'])->group(function () {
     Route::delete('/orders/delete/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
     Route::post('/orders/{id}/status', [OrderController::class, 'changeStatus'])->name('orders.updateStatus');
 
+
+    Route::resource('testimonial', TestimonialController::class);
 
     Route::resource('roles', RoleController::class);
 });

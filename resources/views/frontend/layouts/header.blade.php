@@ -33,7 +33,7 @@
                  <li><a class="nav-link scrollto" href="{{ route('event') }}">Events</a></li>
                  <li><a class="nav-link scrollto" href="{{ route('chef') }}">Chefs</a></li>
                  <li><a class="nav-link scrollto" href="{{ route('gallery') }}">Gallery</a></li>
-                 <li><a class="nav-link scrollto" href="{{ route('testimonial') }}">Testimonials</a></li>
+                 <li><a class="nav-link scrollto" href="{{ route('testimonials') }}">Testimonials</a></li>
                  @if (Auth::check())
                      <li><a class="nav-link scrollto" href="{{ route('logout') }}"
                              onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>

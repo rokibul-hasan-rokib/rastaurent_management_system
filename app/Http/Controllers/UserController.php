@@ -45,7 +45,7 @@ class UserController extends Controller
 
         $userCredential = $request->only('email','password');
         if(Auth::attempt($userCredential)){
-            return redirect('/dashboard');
+            return redirect('/');
         }
 
         return back()->withErrors([

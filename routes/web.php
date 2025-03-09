@@ -32,33 +32,26 @@ use App\Http\Controllers\SslCommerzPaymentController;
 |
 */
 
-Route::get('/register',[UserController::class, 'loadRegister'])->name('register.page');
-Route::post('/register',[UserController::class, 'register'])->name('register.store');
-Route::get('/login',[UserController::class,'loadLogin'])->name('login.page');
-Route::post('/login',[UserController::class,'userLogin'])->name('login');
-Route::post('/logout',[UserController::class,'logout'])->name('logout');
+Route::get('/register', [UserController::class, 'loadRegister'])->name('register.page');
+Route::post('/register', [UserController::class, 'register'])->name('register.store');
+Route::get('/login', [UserController::class, 'loadLogin'])->name('login.page');
+Route::post('/login', [UserController::class, 'userLogin'])->name('login');
+Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
 
-Route::get('/',[HomeController::class, 'index'])->name('home');
-Route::get('/about',[AboutController::class, 'index'])->name('about');
-Route::get('/menu',[MenuController::class, 'index'])->name('menu');
-Route::get('/specialmenu',[SpecialMenuController::class, 'index'])->name('special');
-Route::get('/event',[EventController::class, 'index'])->name('event');
-Route::get('/chef',[ChefController::class, 'index'])->name('chef');
-Route::get('/gallery',[GalleryController::class, 'index'])->name('gallery');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/about', [AboutController::class, 'index'])->name('about');
+Route::get('/event', [EventController::class, 'index'])->name('event');
+Route::get('/chef', [ChefController::class, 'index'])->name('chef');
+Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
 
 
-Route::get('/contact',[ContactController::class, 'index'])->name('contact');
-Route::post('/contact',[ContactController::class, 'store'])->name('contacts.store');
-Route::delete('/contact',[ContactController::class, 'destroy'])->name('contacts.destroy');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/contact', [ContactController::class, 'store'])->name('contacts.store');
+Route::delete('/contact', [ContactController::class, 'destroy'])->name('contacts.destroy');
 
 
-Route::get('/cart', [CartController::class, 'showCart'])->name('cart.index');
-Route::post('/add-to-cart/{id}', [CartController::class, 'addToCart'])->name('cart.add');
-Route::delete('/remove-from-cart/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
-Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
-Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
-Route::get('/cart-count', [CartController::class, 'getCartCount']);
+
 
 // SSLCOMMERZ Start
 Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout'])->name('example1');
@@ -76,15 +69,21 @@ Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/tablebooking',[BookedController::class, 'index'])->name('booked');
-    Route::post('/tablebooking',[BookedController::class, 'store'])->name('booked.store');
-
-
+    Route::get('/tablebooking', [BookedController::class, 'index'])->name('booked');
+    Route::post('/tablebooking', [BookedController::class, 'store'])->name('booked.store');
+    Route::get('/cart', [CartController::class, 'showCart'])->name('cart.index');
+    Route::post('/add-to-cart/{id}', [CartController::class, 'addToCart'])->name('cart.add');
+    Route::delete('/remove-from-cart/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+    Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
+    Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
+    Route::get('/cart-count', [CartController::class, 'getCartCount']);
+    Route::get('/menu', [MenuController::class, 'index'])->name('menu');
+    Route::get('/specialmenu', [SpecialMenuController::class, 'index'])->name('special');
 });
 
 
 
-Route::get('/testimonial',[TestimonialController::class, 'index'])->name('testimonial');
+Route::get('/testimonial', [TestimonialController::class, 'index'])->name('testimonial');
 
 Route::get('/order-confirmation/{id}', [OrderController::class, 'confirmationById'])->name('order.confirmationbyid');
 Route::get('/order-confirmation', [OrderController::class, 'confirmation'])->name('order.confirmation');
@@ -93,9 +92,9 @@ Route::get('/order-confirmation', [OrderController::class, 'confirmation'])->nam
 
 Route::middleware(['auth', 'role:admin,super admin'])->group(function () {
 
-    Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('products', ProductController::class);
-    Route::get('/contact/all',[ContactController::class, 'index2'])->name('contact.index');
+    Route::get('/contact/all', [ContactController::class, 'index2'])->name('contact.index');
     Route::resource('reservations', ReservationController::class);
     Route::get('reservations/{reservation}/status', [ReservationController::class, 'editStatus'])->name('reservations.editStatus');
     Route::post('reservations/{reservation}/status', [ReservationController::class, 'updateStatus'])->name('reservations.updateStatus');
@@ -107,6 +106,4 @@ Route::middleware(['auth', 'role:admin,super admin'])->group(function () {
 
 
     Route::resource('roles', RoleController::class);
-
-
 });

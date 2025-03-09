@@ -8,4 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class Gallery extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+
+    const STATUS_ACTIVE = 1;
+    const STATUS_INACTIVE = 0;
+    const STATUS_LIST = [
+        self::STATUS_ACTIVE => 'Active',
+        self::STATUS_INACTIVE => 'Inactive',
+    ];
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', self::STATUS_ACTIVE);
+    }
+
+
+    final public function getAchievements()
+    {
+        return self::query()->get();
+    }
 }

@@ -10,7 +10,8 @@
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
-        "opcodesio/log-viewer": "^3.11"
+        "opcodesio/log-viewer": "^3.11",
+        "spatie/laravel-html": "^3.11"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.14",

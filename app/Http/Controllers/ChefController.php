@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chefs;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ChefController extends Controller
 {
@@ -16,15 +18,16 @@ class ChefController extends Controller
         return view('backend.chef.create');
     }
 
-    public function store()
+    public function store(Request $request)
     {
         try {
-            DB::beginTransaction(Request $request);
+            DB::beginTransaction($request);
             $chefs = (new Chefs())->storeChefs($request);
             DB::commit();
+            return redirect()->route('chefs.index')->with('success','Chef Stored Successfully.');
         } catch (\Throwable $th) {
             DB::rollback();
-            //throw $th;
+            return redirect()->back()->with('error', $th->getMessage());
         }
     }
     public function destroy(Chefs $chefs)

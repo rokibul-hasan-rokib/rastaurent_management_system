@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class Chefs extends Model
 {
@@ -60,7 +61,7 @@ class Chefs extends Model
         return $chefs->update($this->prepareData($request));
     }
 
-    final public function deleteChefs(Request $request)
+    final public function deleteChefs(Chefs $chefs)
     {
         return $chefs->delete();
     }

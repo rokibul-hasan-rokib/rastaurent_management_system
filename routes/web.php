@@ -43,9 +43,9 @@ Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/event', [EventController::class, 'index'])->name('event');
-Route::get('/chef', [ChefController::class, 'index'])->name('chef');
+Route::get('/chef', [FrontEndController::class, 'chef'])->name('chef');
 Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
-
+Route::get('/testimonials', [FrontEndController::class, 'testimonial'])->name('testimonials');
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contacts.store');
@@ -81,10 +81,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/menu', [MenuController::class, 'index'])->name('menu');
     Route::get('/specialmenu', [SpecialMenuController::class, 'index'])->name('special');
 });
-
-
-
-Route::get('/testimonials', [FrontEndController::class, 'testimonial'])->name('testimonials');
 
 Route::get('/order-confirmation/{id}', [OrderController::class, 'confirmationById'])->name('order.confirmationbyid');
 Route::get('/order-confirmation', [OrderController::class, 'confirmation'])->name('order.confirmation');

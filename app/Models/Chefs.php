@@ -24,19 +24,44 @@ class Chefs extends Model
     }
 
 
-    final public function getAchievements()
+    final public function getAllChefs()
     {
         return self::query()->get();
     }
 
     private function prepareData(Request $request, $existingImage = null): array
     {
+        $imagePath = $existingImage;
+    
+        if ($request->hasFile('image')) {
+            if ($existingImage) {
+                Storage::disk('public')->delete($existingImage);
+            }
+    
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $imagePath = $image->storeAs('images', $imageName, 'public');
+        }
+
         return [
             "name" => $request->input('name'),
             "designation" => $request->input("designation"),
-            'image' => $request->hasFile('image')
-                ? $request->file('image')->store('images', 'public')
-                : $existingImage,
+            'image' => $imagePath,
         ];
+    }
+
+    final public function storeChefs(Request $request)
+    {
+        return self::query()->create($this->prepareData($request));
+    }
+
+    final public function updateChefs(Request $request,Chefs $chefs)
+    {
+        return $chefs->update($this->prepareData($request));
+    }
+
+    final public function deleteChefs(Request $request)
+    {
+        return $chefs->delete();
     }
 }

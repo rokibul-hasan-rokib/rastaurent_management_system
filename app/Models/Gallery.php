@@ -24,7 +24,7 @@ class Gallery extends Model
     }
 
 
-    final public function getAchievements()
+    final public function getAllGallery()
     {
         return self::query()->get();
     }

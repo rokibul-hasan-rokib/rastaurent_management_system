@@ -37,4 +37,19 @@ class Gallery extends Model
                 : $existingImage,
         ];
     }
+
+    final public function storeGallery(Request $request)
+    {
+        return self::query()->create($this->prepareData($request));
+    }
+
+    final public function updateGallery(Request $request, Gallery $gallery)
+    {
+        return $gallery->update($this->prepareData($request));
+    }
+
+    final public function deleteGallery(Gallery $gallery)
+    {
+        return $gallery->delete();
+    }
 }

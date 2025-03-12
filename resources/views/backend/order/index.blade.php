@@ -41,10 +41,10 @@
                                 <tbody>
                                     @foreach ($orders as $order)
                                         <tr>
-                                            <td>{{ $order->id }}</td>
-                                            <td>{{ $order?->user?->name }}</td>
-                                            <td>{{ $order?->total_amount }}</td>
-                                            <td>{{ $order?->status }}</td>
+                                            <td>{{ $order->id ?? "N/A" }}</td>
+                                            <td>{{ $order?->user?->name ?? "N/A" }}</td>
+                                            <td>{{ $order?->total_amount ?? "N/A" }}</td>
+                                            <td>{{ $order?->status ?? "N/A" }}</td>
                                             <td>
                                                 <a href="{{ route('orders.edit', $order->id) }}"
                                                     class="btn btn-info btn-sm">View</a>

@@ -24,22 +24,45 @@ class Event extends Model
     }
 
 
-    final public function getAchievements()
+    final public function getAllEvents()
     {
         return self::query()->get();
     }
 
     private function prepareData(Request $request, $existingImage = null): array
     {
+        $imagePath = $existingImage;
+    
+        if ($request->hasFile('image')) {
+            if ($existingImage) {
+                Storage::disk('public')->delete($existingImage);
+            }
+    
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $imagePath = $image->storeAs('images', $imageName, 'public');
+        }
         return [
             "name" => $request->input('name'),
             "cost" => $request->input("cost"),
             "description" => $request->input("description"),
-            'image' => $request->hasFile('image')
-                ? $request->file('image')->store('images', 'public')
-                : $existingImage,
+            'image' => $imagePath,
         ];
     }
+     final public function storeEvent(Request $request)
+     {
+        return self::query()->create($this->prepareData($request));
+     }
+
+     final public function updateEvent(Request $request, Event $event)
+     {
+        return $event->update($this->prepareData($request));
+     }
+
+     final public function deleteEvent(Event $event)
+     {
+        return $event->delete();
+     }
 
 
 }

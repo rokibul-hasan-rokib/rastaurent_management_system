@@ -52,4 +52,9 @@ class Gallery extends Model
     {
         return $gallery->delete();
     }
+
+    final public function get()
+    {
+        return self::query()->where('status', self::STATUS_ACTIVE)->get();
+    }
 }

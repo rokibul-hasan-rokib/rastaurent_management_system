@@ -52,9 +52,13 @@ class UserController extends Controller
             'email' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');
     }
-    public function logout(Request $request){
-        $request->session()->flush();
-        Auth::logout();
-        return redirect('/login');
-    }
+public function logout(Request $request)
+{
+    Auth::logout();
+
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect('/login')->with('status', 'You have been logged out successfully.');
+}
 }

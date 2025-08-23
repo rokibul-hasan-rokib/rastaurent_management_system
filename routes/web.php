@@ -33,6 +33,12 @@ use App\Http\Controllers\SslCommerzPaymentController;
 |
 */
 
+
+Route::get('/profile', function () {
+    $user = Auth::user();
+    return view('profile', compact('user'));
+})->middleware('auth')->name('profile');
+
 Route::get('/register', [UserController::class, 'loadRegister'])->name('register.page');
 Route::post('/register', [UserController::class, 'register'])->name('register.store');
 Route::get('/login', [UserController::class, 'loadLogin'])->name('login.page');
